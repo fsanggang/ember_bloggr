@@ -2,3 +2,48 @@
 .ember-application {
     margin: 20px;
 }
+
+/* Global
+-------------------------------------------------- */
+body {
+  font-size: 15px;
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-weight: 300;
+  color: #555;
+  background: #fff;
+  padding: 0px;
+  height: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: #e1563f;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #b7321d;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+strong {
+  font-weight: 400;
+}
+
+.page {
+  margin: 0 auto;
+  max-width: 960px;
+  min-width: 320px;
+}
+
+.ui.menu .item {
+  padding: 0.83em 0.95em !important;
+}
+
+#content {
+  text-align: justify;
+}

@@ -1,31 +1,144 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Ember Starter Kit</title>
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <script type="text/x-handlebars">
-    <h2>Welcome to Ember.js</h2>
+  <head>
+    <meta charset="utf-8">
+    <title>Bloggr: An ember.js project</title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,300,400" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/semantic.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body >
+    <div class="ui page grid">
+      <!-- the application template -->
+      <script type="text/x-handlebars">
+        <div class="page ui">
+          <nav class="ui text menu navbar">
+            <div class="left menu">
+              <a href class="item">Bloggr: An ember.js project</a>
+            </div>
 
-    {{outlet}}
-  </script>
+            <div class="right menu">
+              {{#link-to "posts" class="item"}}Posts{{/link-to}}
+              {{#link-to "about" class="item"}}About{{/link-to}}
+            </div>
+          </nav>
 
-  <script type="text/x-handlebars" id="index">
-    <ul>
-    {{#each item in model}}
-      <li>{{item}}</li>
-    {{/each}}
-    </ul>
-  </script>
+          <div class="ui divider"></div>
 
-  <script src="js/libs/jquery-1.10.2.js"></script>
-  <script src="js/libs/ember-template-compiler-1.10.0.js"></script>
-  <script src="js/libs/ember-1.10.0.debug.js"></script>
-  <script src="js/app.js"></script>
-  <!-- to activate the test runner, add the "?test" query string parameter -->
-  <script src="tests/runner.js"></script>
-</body>
+          <div class="main">
+            {{outlet}}
+          </div>
+        </div>
+      </script>
+
+      <script type="text/x-handlebars" id="posts">
+        <div class="ui stackable grid">
+          <div class="eleven wide column" id="content">
+            {{outlet}}
+
+            {{#each}}
+              <h2 class="ui dividing header">
+                <div class="content">
+                  {{{title}}}
+
+                  <div class="sub header">
+                    by {{author.name}} at {{format-date date}}
+                  </div>
+                </div>
+              </h2>
+
+              {{format-markdown excerpt}}
+            {{/each}}
+          </div>
+
+          <div class="five wide column" id="sidebar">
+            <div class="ui tiny header">Recent Posts</div>
+            <div class="ui relaxed list">
+              {{#each}}
+                <div class="item">
+                  <div class="content">
+                    {{#link-to "post" this class="header"}}
+                      {{{title}}}
+                    {{/link-to}}
+                  </div>
+                </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </script>
+
+      <script type="text/x-handlebars" id="post">
+        <h2 class="ui dividing header">
+          <div class="content">
+            {{{title}}}
+
+            <div class="sub header">
+              by {{author.name}} at {{format-date date}}
+            </div>
+          </div>
+        </h2>
+
+        {{format-markdown body}}
+      </script>
+
+      <script type="text/x-handlebars" id="about">
+        <p>This is just a little proof-of-concept project, using:</p>
+        <div class="ui relaxed animated list">
+          <div class="item">
+            <div class="content">
+              <a target="_blank" href="https://github.com/emberjs/starter-kit">
+                <div class="header">
+                  <span class="fa-2x">
+                    <i class="fa fa-github"></i>
+                  </span>
+                  The emberjs starter-kit
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="content">
+              <a target="_blank" href="https://www.youtube.com/watch?v=1QHrlFlaXdI&t=71">
+                <div class="header">
+                  <span class="fa-2x">
+                    <i class="fa fa-youtube"></i>
+                  </span>
+
+                  Tom Dale's screencast
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="content">
+              <a target="_blank" href="http://semantic-ui.com">
+                <div class="header">
+                  <span class="fa-stack">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-inverse fa-stack-1x">S</i>
+                  </span>
+
+                  The Semantic UI framework
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </script>
+    </div>
+
+    <script src="js/libs/jquery-1.10.2.js"></script>
+    <script src="js/libs/ember-template-compiler-1.10.0.js"></script>
+    <script src="js/libs/ember-1.10.0.debug.js"></script>
+    <script src="js/libs/semantic.js"></script>
+    <script src="js/libs/moment.min.js"></script>
+    <script src="js/app.js"></script>
+    <!-- to activate the test runner, add the "?test" query string parameter -->
+    <script src="tests/runner.js"></script>
+  </body>
 </html>
